@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 
 const routes = [
   { label: "Dashboard", icon: LayoutDashboard, href: "/dashboard" },
+  { label: "Longform AI Search", icon: Target, href: "/dashboard/longform" },
   { label: "Saved Niches", icon: Bookmark, href: "/saved" },
   { label: "Compare", icon: BarChart2, href: "/compare" },
   { label: "Settings", icon: Settings, href: "/settings" },
