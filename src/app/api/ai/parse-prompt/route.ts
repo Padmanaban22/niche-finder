@@ -17,7 +17,7 @@ export async function POST(req: Request) {
     }
 
     const genAI = new GoogleGenerativeAI(apiKey);
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
     const systemPrompt = `You are a YouTube Niche Search Expert. A user will give you a natural language prompt defining what kind of longform YouTube channels they want to find. 
 Your job is to translate their intent into structured search filters.
