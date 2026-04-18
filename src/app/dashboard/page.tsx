@@ -12,6 +12,8 @@ import { toast } from "sonner";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import * as XLSX from "xlsx";
+import { LongformAiSearch } from "@/components/LongformAiSearch";
+import { cn } from "@/lib/utils";
 
 type GraphMode = "manual" | "top3_growth" | "top5_growth";
 
@@ -475,9 +477,29 @@ function DashboardContent() {
 }
 
 export default function DashboardPage() {
+  const [mode, setMode] = useState<"shorts" | "ai-longform">("shorts");
+
   return (
-    <Suspense fallback={<div className="p-8 h-full flex justify-center items-center text-muted-foreground"><Loader2 className="w-6 h-6 animate-spin mr-2"/> Loading dashboard...</div>}>
-      <DashboardContent />
-    </Suspense>
+    <div className="flex flex-col h-full gap-4">
+      <div className="flex gap-2 bg-card p-1 rounded-lg border border-border w-fit shrink-0">
+        <button 
+          onClick={() => setMode("shorts")}
+          className={cn("px-4 py-2 text-sm font-medium rounded-md focus:outline-none transition-colors", mode === "shorts" ? "bg-primary text-primary-foreground shadow-sm" : "text-muted-foreground hover:bg-muted")}
+        >
+          Untapped Shorts Finder
+        </button>
+        <button 
+          onClick={() => setMode("ai-longform")}
+          className={cn("px-4 py-2 text-sm font-medium rounded-md focus:outline-none transition-colors", mode === "ai-longform" ? "bg-primary text-primary-foreground shadow-sm bg-blue-600 text-white" : "text-muted-foreground hover:bg-muted")}
+        >
+          Longform AI Search ⚡
+        </button>
+      </div>
+      <div className="flex-1">
+        <Suspense fallback={<div className="p-8 h-full flex justify-center items-center text-muted-foreground"><Loader2 className="w-6 h-6 animate-spin mr-2"/> Loading dashboard...</div>}>
+          {mode === "shorts" ? <DashboardContent /> : <LongformAiSearch />}
+        </Suspense>
+      </div>
+    </div>
   );
 }
