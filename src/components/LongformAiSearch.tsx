@@ -120,6 +120,10 @@ function LongformDashboardContent() {
                allResults.push(r);
              }
           }
+        } else {
+          const errData = await searchRes.json();
+          toast.error(`YouTube API Error: ${errData.error || "Failed"}`);
+          break; // Stop iterating since the API is failing (e.g. no keys)
         }
       }
 
