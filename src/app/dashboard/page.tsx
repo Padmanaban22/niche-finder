@@ -214,7 +214,7 @@ function DashboardContent() {
     : 0;
 
   return (
-    <div className="h-full flex flex-col gap-6">
+    <div className="flex flex-col gap-6">
       <div>
         <h1 className="text-3xl font-bold tracking-tight mb-2">Untapped Shorts Finder</h1>
         <p className="text-muted-foreground">Find high-potential videos with optional filters for time, views, language, and upload velocity.</p>
@@ -248,9 +248,9 @@ function DashboardContent() {
         </Button>
       </div>
 
-      <div className="flex-1 flex gap-4 min-h-0">
+      <div className="flex flex-col lg:flex-row gap-4">
         {showFilters && (
-          <Card className="w-64 p-4 shrink-0 overflow-y-auto hidden lg:block space-y-6">
+          <Card className="w-full lg:w-64 p-4 shrink-0 space-y-6">
             <div>
               <h3 className="font-semibold mb-4 flex justify-between items-center text-sm">
                 Filters
@@ -361,7 +361,7 @@ function DashboardContent() {
           </Card>
         )}
 
-        <div className="flex-1 overflow-hidden flex flex-col gap-4">
+        <div className="flex-1 flex flex-col gap-4 min-w-0">
           {results.length > 0 && (
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-3">
               <Card className="p-4">
@@ -391,7 +391,7 @@ function DashboardContent() {
               onGrowthModeChange={setGraphMode}
             />
           )}
-          <Card className="flex-1 overflow-hidden flex flex-col">
+          <Card className="flex flex-col overflow-hidden">
           {activeFilters.length > 0 && results.length > 0 && (
             <div className="flex flex-wrap gap-2 px-4 py-3 bg-muted/30 border-b items-center">
               <span className="text-xs font-semibold text-muted-foreground mr-1 uppercase">Active Filters:</span>
@@ -405,7 +405,7 @@ function DashboardContent() {
               ))}
             </div>
           )}
-          <div className="flex-1 overflow-y-auto overflow-x-auto p-0">
+          <div className="overflow-x-auto p-0">
             {results.length > 0 ? (
               <UntappedNicheTable data={results} />
             ) : (
