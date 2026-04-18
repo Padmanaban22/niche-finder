@@ -160,7 +160,7 @@ function LongformDashboardContent() {
     const workbook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(workbook, worksheet, "AI Longform Niches");
     const date = new Date().toISOString().slice(0, 10);
-    XLSX.writeFile(workbook, \`ai_longform_niches_\${date}.xlsx\`);
+    XLSX.writeFile(workbook, `ai_longform_niches_${date}.xlsx`);
   };
 
   const totalChannels = results.length;
